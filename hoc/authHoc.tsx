@@ -14,7 +14,7 @@ const withAuth = (WrappedComponent: any, options = { redirectAuthenticated: true
             } else {
                 router.push(router.asPath)
             }
-        }, []);
+        }, [token]);
         return <WrappedComponent {...props} />;
     };
 
