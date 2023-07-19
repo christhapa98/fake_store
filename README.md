@@ -1,38 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Fake Store
 
-## Getting Started
+This is a sample Next.js project for creating a fake store. It includes a basic setup for building a web application with Next.js, React, Redux, and other popular dependencies.
 
-First, run the development server:
+## Installation
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+To run this project locally, follow these steps:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clone the repository: `git clone <repository_url>`
+2. Navigate to the project directory: `cd fake-store`
+3. Install the dependencies: `npm install`
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+In the project directory, you can run the following scripts:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- `npm run dev`: Runs the development server. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+- `npm run build`: Builds the application for production.
+- `npm start`: Starts the production server.
+- `npm run lint`: Runs the linter to check for code quality issues.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Dependencies
 
-## Learn More
+The project relies on the following dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+- **@headlessui/react**: ^1.7.15
+- **@heroicons/react**: ^2.0.18
+- **@reduxjs/toolkit**: ^1.9.5
+- **@tanstack/react-query**: ^4.29.25
+- **@types/node**: 20.4.2
+- **@types/react**: 18.2.15
+- **@types/react-dom**: 18.2.7
+- **autoprefixer**: 10.4.14
+- **axios**: ^1.4.0
+- **eslint**: 8.45.0
+- **eslint-config-next**: 13.4.10
+- **flowbite**: ^1.7.0
+- **flowbite-react**: ^0.4.11
+- **formik**: ^2.4.2
+- **moment**: ^2.29.4
+- **next**: 13.4.10
+- **next-progress**: ^2.3.1
+- **postcss**: 8.4.26
+- **react**: 18.2.0
+- **react-dom**: 18.2.0
+- **react-redux**: ^8.1.1
+- **react-toastify**: ^9.1.3
+- **redux-persist**: ^6.0.0
+- **tailwindcss**: 3.3.3
+- **typescript**: 5.1.6
+- **yup**: ^1.2.0
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Make sure to have these dependencies installed when running the project.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the [MIT License](LICENSE).
