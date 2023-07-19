@@ -1,6 +1,22 @@
-import '@/styles/tailwind.css'
+import { Provider } from 'react-redux'
 import type { AppProps } from 'next/app'
+import NextProgress from 'next-progress'
+
+import { stores } from '@/redux/store'
+
+import '@/styles/tailwind.css'
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+import { ToastContainer } from 'react-toastify'
+
+
+const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return <QueryClientProvider client={queryClient}>
+    <Provider store={stores}>
+      <ToastContainer />
+      <NextProgress color="#29d" options={{ trickleSpeed: 50, showSpinner: false }} />
+      <Component {...pageProps} />
+    </Provider >
+  </QueryClientProvider>
 }
