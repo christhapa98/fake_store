@@ -1,5 +1,5 @@
-import { addCartItems } from '@/redux/cart/cartSlice';
-import { useAppDispatch } from '@/redux/store'
+import { addCartItems, cartData, updateQuantity } from '@/redux/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/store'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -16,6 +16,8 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: { product: ProductCardProps }) {
     const dispatch = useAppDispatch();
+    const { cartItems } = useAppSelector(cartData)
+
     return (
         <div className="shadow-xl hover:scale-100 scale-95  transition-all bg-white p-3 rounded-xl flex flex-col gap-3" key={product.index}>
             <div className="flex items-start justify-center">
@@ -25,11 +27,20 @@ export default function ProductCard({ product }: { product: ProductCardProps }) 
             </div>
             <p className="text-md font-semibold truncate">{product.title}</p>
             <div className='flex justify-between'>
-
                 <p className="text-lg">Rs {product.price}</p>
                 <button className='flex flex-row-reverse hover:scale-110' onClick={() => {
-                    dispatch(addCartItems(product));
-                    toast.success("Added to Cart")
+                    const containsId = cartItems.some((item: any) => {
+                        console.log(item.id === product.id);
+                        return item.id === product.id
+                    });
+                    if (containsId === false) {
+                        dispatch(addCartItems({ ...product, quantity: 1 }));
+                        toast.success("Added to Cart")
+                    }
+                    else {
+                        dispatch(updateQuantity(product.id));
+                        toast.success("Updated Cart Item")
+                    }
                 }}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 bg-orange-500 rounded-full text-white">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
