@@ -55,3 +55,7 @@ Make sure to have these dependencies installed when running the project.
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+Login Credential are :
+username: "mor*2314"
+password: "83r5^*"
