@@ -1,7 +1,28 @@
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+import { checkSession, presistSessionData } from "@/redux/session/sessionSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-    </main>
+export default function IndexPage() {
+  const { token } = useAppSelector(presistSessionData);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (token !== null) {
+      router.push("/home")
+    }
+    else { router.push("/auth/login") }
+    return () => { }
+  }, [token])
+
+  useEffect(() => {
+    dispatch(checkSession());
+  }, [])
+
+  return (
+    <div className=' h-screen items-center justify-center flex flex-col '>
+      <img className='animate-pulse w-40' src={'https://media.istockphoto.com/id/1138644570/vector/shopping-cart-icon-design-cart-icon-symbol-design.jpg?s=612x612&w=0&k=20&c=_lTGkSkJ6ha8ZNiKD8XWVtLNyTjQ74HCu_c4WFio27g='} />
+    </div>
   )
 }
