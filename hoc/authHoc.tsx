@@ -6,15 +6,17 @@ import { useEffect, useState } from "react";
 const withAuth = (WrappedComponent: any, options = { redirectAuthenticated: true }) => {
     const AuthWrapper = (props: any) => {
         const router = useRouter();
-        const { token } = useAppSelector(presistSessionData);
 
         useEffect(() => {
-            if (token === null) {
-                router.replace("/auth/login")
-            } else {
-                router.push(router.asPath)
+            if (typeof window !== 'undefined' || typeof window !== undefined) {
+                const token = localStorage.getItem("fakeStoreToken")
+                if (token === null) {
+                    router.replace("/auth/login")
+                } else {
+                    router.push(router.asPath === "/auth/login" ? "/home" : router.asPath)
+                }
             }
-        }, [token]);
+        }, []);
         return <WrappedComponent {...props} />;
     };
 
