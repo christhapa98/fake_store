@@ -3,8 +3,9 @@ import Navbar from './Navbar'
 import Head from 'next/head'
 import Footer from './Footer'
 import { ScrollToTop } from '../ScrollToTop'
+import withAuth from '@/hoc/authHoc'
 
-export default function MainLayout({ children }: { children: any }) {
+function MainLayout({ children }: { children: any }) {
     return (
         <div className='bg-gray-100'>
             <Head>
@@ -19,3 +20,5 @@ export default function MainLayout({ children }: { children: any }) {
         </div>
     )
 }
+
+export default withAuth(MainLayout);   
