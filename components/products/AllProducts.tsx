@@ -27,7 +27,7 @@ export default function AllProducts() {
             <hr />
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
                 {data.data.length > 0 && data.data.map((product: any, index: number) => {
-                    return <ProductCard  key={index}  product={product} />
+                    return <ProductCard key={index} product={product} />
                 })}
             </div>
         </section >

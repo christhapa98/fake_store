@@ -6,7 +6,6 @@ import { useFormik } from 'formik'
 import { useRouter } from 'next/router';
 import React from 'react'
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function LoginForm() {
     const dispatch = useAppDispatch();
