@@ -4,6 +4,7 @@ import ProductDetailLoader from '../../loaders/ProductDetailLoader'
 import { addCartItems, cartData, updateQuantity } from '@/redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { toast } from "react-toastify"
+import SimilarProducts from '../../card/SimilarProducts';
 
 export default function ProductDetailLayout({ product, isLoading }: { product: any, isLoading: boolean }) {
     const dispatch = useAppDispatch();
@@ -25,7 +26,7 @@ export default function ProductDetailLayout({ product, isLoading }: { product: a
                 </span>
                 <p className="text-md text-gray-600 ">{product.description}</p>
                 <p className="text-2xl">Rs {product.price}</p>
-                <button className='flex flex-row-reverse hover:scale-110' onClick={() => {
+                <button className='flex' onClick={() => {
                     const containsId = cartItems.some((item: any) => {
                         console.log(item.id === product.id);
                         return item.id === product.id
@@ -43,7 +44,11 @@ export default function ProductDetailLayout({ product, isLoading }: { product: a
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </button>
+                <div>
+                    <SimilarProducts category={product.category} />
+                </div>
             </div>
+
         </div>
     )
 }
