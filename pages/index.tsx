@@ -1,8 +1,24 @@
-import { useState } from "react";
+import { checkSession, presistSessionData } from "@/redux/session/sessionSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function IndexPage() {
+  const { token } = useAppSelector(presistSessionData);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
-  const [isloggedIn, setIsLoggedIn] = useState(null);
+  useEffect(() => {
+    if (token !== null) {
+      router.push("/home")
+    }
+    else { router.push("/auth/login") }
+    return () => { }
+  }, [token])
+
+  useEffect(() => {
+    dispatch(checkSession());
+  }, [])
 
   return (
     <div className=' h-screen items-center justify-center flex flex-col '>

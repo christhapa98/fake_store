@@ -1,13 +1,13 @@
 
 import { configureStore } from "@reduxjs/toolkit";
-import { productsReducer } from "./products/productSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { sessionReducer } from "./session/sessionSlice";
+import { cartReducer } from "./cart/cartSlice";
 
 export const stores = configureStore({
     reducer: {
-        products: productsReducer,
-        session: sessionReducer
+        session: sessionReducer,
+        cartItems: cartReducer
     }
 });
 

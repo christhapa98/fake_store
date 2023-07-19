@@ -3,12 +3,14 @@ import { usePostData } from '@/hooks/useApi';
 import { setToken } from '@/redux/session/sessionSlice';
 import { useAppDispatch } from '@/redux/store';
 import { useFormik } from 'formik'
+import { useRouter } from 'next/router';
 import React from 'react'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function LoginForm() {
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
+    const router = useRouter();
 
     const formik = useFormik({
         initialValues: {
@@ -18,7 +20,9 @@ export default function LoginForm() {
             const { data, error }: any = await usePostData(values, endpoints.user.login)
             if (data) {
                 toast.success("Login Successfull")
-                dispatch(setToken(data.token))
+                dispatch(setToken(data.token));
+                router.push("/")
+
             } else {
                 toast.error(error);
             }

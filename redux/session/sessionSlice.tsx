@@ -1,11 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
 import { RootState } from "../store";
 
-interface session {
-    token: string | null,
-}
+interface session { token: string | null }
 
 // Create the sessionSlice
 const sessionSlices = createSlice({
@@ -16,23 +12,21 @@ const sessionSlices = createSlice({
     reducers: {
         clearSession(state) {
             state.token = null;
+            localStorage.clear();
         },
         setToken(state, action) {
             state.token = action.payload;
+            localStorage.setItem("fakeStoreToken", action.payload);
         },
+        checkSession(state) {
+            const token = localStorage.getItem("fakeStoreToken");
+            state.token = token;
+        }
     }
 });
 
-const persistedSessionReducer = persistReducer(
-    {
-        key: "Session",
-        storage: storage,
-    },
-    sessionSlices.reducer
-);
-
-export const { clearSession, setToken } = sessionSlices.actions
-export const sessionReducer = persistedSessionReducer;
+export const { clearSession, setToken, checkSession } = sessionSlices.actions
+export const sessionReducer = sessionSlices.reducer;
 
 export const presistSessionData = (state: RootState) => state.session;
 

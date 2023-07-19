@@ -24,6 +24,7 @@ export default function AllProducts() {
                 <p className='text-xl'>All Products</p>
                 <p className='text-md font-semibold'>Total {data.data?.length}</p>
             </div>
+            <hr />
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
                 {data.data.length > 0 && data.data.map((product: any, index: number) => {
                     return <ProductCard product={product} />

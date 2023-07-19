@@ -1,10 +1,11 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-
-const products: any = [];
+import { useAppSelector } from '@/redux/store';
+import { cartData } from '@/redux/cart/cartSlice';
 
 export default function Cart({ open, setOpen }: any) {
+    const { cartItems, totalAmount } = useAppSelector(cartData);
     return (
         <Transition.Root show={open} as={Fragment}>
             <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -19,7 +20,6 @@ export default function Cart({ open, setOpen }: any) {
                 >
                     <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
                 </Transition.Child>
-
                 <div className="fixed inset-0 overflow-hidden">
                     <div className="absolute inset-0 overflow-hidden">
                         <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
@@ -36,13 +36,13 @@ export default function Cart({ open, setOpen }: any) {
                                     <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                                         <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                                             <CartHeader setOpen={setOpen} />
-                                            <CartItems />
+                                            <CartItems cartItems={cartItems} />
                                         </div>
 
                                         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                                             <div className="flex justify-between text-base font-medium text-gray-900">
                                                 <p>Subtotal</p>
-                                                <p>Rs 262.00</p>
+                                                <p>Rs {totalAmount}</p>
                                             </div>
                                             <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                                             <div className="mt-6">
@@ -65,7 +65,6 @@ export default function Cart({ open, setOpen }: any) {
     )
 }
 
-
 const CartHeader = ({ setOpen }: any) => {
     return <div className="flex items-start justify-between">
         <Dialog.Title className="text-lg font-medium text-gray-900">Shopping cart</Dialog.Title>
@@ -82,20 +81,22 @@ const CartHeader = ({ setOpen }: any) => {
     </div>
 }
 
-const CartItems = () => {
+const CartItems = ({ cartItems }: any) => {
+    if (cartItems.length === 0) {
+        return <>No Items</>
+    }
     return <div className="mt-8">
         <div className="flow-root">
             <ul role="list" className="-my-6 divide-y divide-gray-200">
-                {products.map((product: any) => (
+                {cartItems.map((product: any) => (
                     <li key={product.id} className="flex py-6">
                         <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                             <img
-                                src={product.imageSrc}
+                                src={product.image}
                                 alt={product.imageAlt}
-                                className="h-full w-full object-cover object-center"
+                                className="h-full w-full object-contain object-center"
                             />
                         </div>
-
                         <div className="ml-4 flex flex-1 flex-col">
                             <div>
                                 <div className="flex justify-between text-base font-medium text-gray-900">
@@ -108,7 +109,6 @@ const CartItems = () => {
                             </div>
                             <div className="flex flex-1 items-end justify-between text-sm">
                                 <p className="text-gray-500">Qty {product.quantity}</p>
-
                                 <div className="flex">
                                     <button
                                         type="button"
