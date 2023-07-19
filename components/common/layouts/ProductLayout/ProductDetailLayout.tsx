@@ -1,8 +1,13 @@
 import Image from 'next/image'
 import React from 'react'
 import ProductDetailLoader from '../../loaders/ProductDetailLoader'
+import { addCartItems, cartData, updateQuantity } from '@/redux/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { toast } from "react-toastify"
 
 export default function ProductDetailLayout({ product, isLoading }: { product: any, isLoading: boolean }) {
+    const dispatch = useAppDispatch();
+    const { cartItems } = useAppSelector(cartData)
 
     if (isLoading) {
         return <><ProductDetailLoader /></>
@@ -20,6 +25,24 @@ export default function ProductDetailLayout({ product, isLoading }: { product: a
                 </span>
                 <p className="text-md text-gray-600 ">{product.description}</p>
                 <p className="text-2xl">Rs {product.price}</p>
+                <button className='flex flex-row-reverse hover:scale-110' onClick={() => {
+                    const containsId = cartItems.some((item: any) => {
+                        console.log(item.id === product.id);
+                        return item.id === product.id
+                    });
+                    if (containsId === false) {
+                        dispatch(addCartItems({ ...product, quantity: 1 }));
+                        toast.success("Added to Cart")
+                    }
+                    else {
+                        dispatch(updateQuantity(product.id));
+                        toast.success("Updated Cart Item")
+                    }
+                }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 bg-orange-500 rounded-full text-white">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </button>
             </div>
         </div>
     )
