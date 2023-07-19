@@ -10,7 +10,7 @@ export default function ProductGrid({ data, title }: any) {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
                 {data?.map((product: any, index: number) => {
-                    return <ProductCard product={product} />
+                    return <ProductCard  key={index} product={product} />
                 })}
             </div>
         </>

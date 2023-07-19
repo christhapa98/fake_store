@@ -1,5 +1,5 @@
 import { endpoints } from '@/constants/endpoints';
-import { usePostData } from '@/hooks/useApi';
+import { postData } from '@/hooks/useApi';
 import { setToken } from '@/redux/session/sessionSlice';
 import { useAppDispatch } from '@/redux/store';
 import { useFormik } from 'formik'
@@ -12,21 +12,23 @@ export default function LoginForm() {
     const dispatch = useAppDispatch();
     const router = useRouter();
 
+    const handleLogin = async (values: any, { setSubmitting }: any) => {
+        const { data, error }: any = await postData(values, endpoints.user.login)
+        if (data) {
+            toast.success("Login Successfull")
+            dispatch(setToken(data.token));
+            router.push("/")
+
+        } else {
+            toast.error(error);
+        }
+    }
+
     const formik = useFormik({
         initialValues: {
             username: "mor_2314", password: "83r5^_"
         },
-        onSubmit: async (values: any, { setSubmitting }: any) => {
-            const { data, error }: any = await usePostData(values, endpoints.user.login)
-            if (data) {
-                toast.success("Login Successfull")
-                dispatch(setToken(data.token));
-                router.push("/")
-
-            } else {
-                toast.error(error);
-            }
-        }
+        onSubmit: handleLogin
     })
 
     return (

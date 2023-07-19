@@ -21,7 +21,7 @@ export default function MostViewed() {
             <p className='text-xl'>Most Viewed Products</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
                 {data.data.length > 0 && data.data.slice(-8).map((product: any, index: number) => {
-                    return <ProductCard product={product} />
+                    return <ProductCard key={index} product={product} />
                 })}
             </div>
         </section>
