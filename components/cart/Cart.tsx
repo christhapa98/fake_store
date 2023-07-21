@@ -1,6 +1,8 @@
 import { Fragment } from 'react'
+
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { cartData, removeCartItem } from '@/redux/cart/cartSlice';
 
@@ -45,12 +47,7 @@ export default function Cart({ open, setOpen }: any) {
                                             </div>
                                             <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                                             <div className="mt-6">
-                                                <a
-                                                    href="#"
-                                                    className="flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700"
-                                                >
-                                                    Checkout
-                                                </a>
+                                                <a href="#" className="flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700"  > Checkout</a>
                                             </div>
                                         </div>
                                     </div>
@@ -68,11 +65,7 @@ const CartHeader = ({ setOpen }: any) => {
     return <div className="flex items-start justify-between">
         <Dialog.Title className="text-lg font-medium text-gray-900">Shopping cart</Dialog.Title>
         <div className="flex items-center ml-3 h-7">
-            <button
-                type="button"
-                className="p-2 -m-2 text-gray-400 hover:text-gray-500"
-                onClick={() => setOpen(false)}
-            >
+            <button type="button" onClick={() => setOpen(false)} className="p-2 -m-2 text-gray-400 hover:text-gray-500" >
                 <span className="sr-only">Close panel</span>
                 <XMarkIcon className="w-6 h-6" aria-hidden="true" />
             </button>
@@ -90,34 +83,19 @@ const CartItems = () => {
                 {cartItems.map((product: any, index: number) => (
                     <li key={product?.id} className="flex py-6">
                         <div className="flex-shrink-0 w-24 h-24 overflow-hidden border border-gray-200 rounded-md">
-                            <img
-                                src={product?.image}
-                                alt={product?.imageAlt}
-                                className="object-contain object-center w-full h-full"
-                            />
+                            <img src={product?.image} alt={product?.imageAlt} className="object-contain object-center w-full h-full" />
                         </div>
                         <div className="flex flex-col flex-1 ml-4">
                             <div>
-                                <div className="flex justify-between text-base font-medium text-gray-900">
-                                    <h3>
-                                        <a href={product?.title}>{product?.title}</a>
-                                    </h3>
-                                    <p className="ml-4">{product?.price}</p>
+                                <div className="grid w-full grid-cols-3 text-base font-medium text-gray-900">
+                                    <span className='col-span-2 text-sm line-clamp-2' >{product?.title}</span>
+                                    <p className="flex flex-row-reverse">Rs. {product?.price}</p>
                                 </div>
-                                <p className="mt-1 text-sm text-gray-500">{product?.color}</p>
                             </div>
                             <div className="flex items-end justify-between flex-1 text-sm">
                                 <p className="text-gray-500">Qty {product?.quantity}</p>
                                 <div className="flex">
-                                    <button
-                                        onClick={() => {
-                                            dispatch(removeCartItem(product.id))
-                                        }}
-                                        type="button"
-                                        className="font-medium text-indigo-600 hover:text-indigo-500"
-                                    >
-                                        Remove
-                                    </button>
+                                    <button onClick={() => { dispatch(removeCartItem(product.id)) }} type="button" className="font-medium text-indigo-600 hover:text-indigo-500"  > Remove</button>
                                 </div>
                             </div>
                         </div>

@@ -21,11 +21,15 @@ const sessionSlices = createSlice({
         checkSession(state) {
             const token = localStorage.getItem("fakeStoreToken");
             state.token = token;
+        },
+        logout(state) {
+            clearSession();
+            localStorage.clear();
         }
     }
 });
 
-export const { clearSession, setToken, checkSession } = sessionSlices.actions
+export const { clearSession, setToken, checkSession, logout } = sessionSlices.actions
 export const sessionReducer = sessionSlices.reducer;
 
 export const presistSessionData = (state: RootState) => state.session;
