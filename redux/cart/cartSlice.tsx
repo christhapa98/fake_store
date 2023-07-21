@@ -33,10 +33,21 @@ const cartSlice = createSlice({
         updateQuantity(state, action) {
             const id = action.payload;
             const newCartItems = state.cartItems;
-            console.log(id, newCartItems)
             const updatedArray = newCartItems.map((item: any) => {
                 if (item.id === id) {
                     return { ...item, quantity: item.quantity + 1 };
+                }
+                return item;
+            });
+            state.cartItems = updatedArray;
+            state.totalAmount = getTotalAmount(state.cartItems);
+        },
+        decreaseQuantity(state, action) {
+            const id = action.payload;
+            const newCartItems = state.cartItems;
+            const updatedArray = newCartItems.map((item: any) => {
+                if (item.id === id) {
+                    return { ...item, quantity: item.quantity - 1 };
                 }
                 return item;
             });
@@ -46,7 +57,7 @@ const cartSlice = createSlice({
     }
 });
 
-export const { addCartItems, removeCartItem, updateQuantity } = cartSlice.actions
+export const { addCartItems, removeCartItem, updateQuantity, decreaseQuantity } = cartSlice.actions
 export const cartReducer = cartSlice.reducer;
 
 export const cartData = (state: RootState) => state.cartItems;

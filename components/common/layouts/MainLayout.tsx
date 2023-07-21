@@ -12,7 +12,7 @@ function MainLayout({ children }: { children: any }) {
                 <title>Fake Store</title>
             </Head>
             <Navbar />
-            <main className='max-w-6xl pt-5 m-auto'>
+            <main className='pt-5 m-auto md:max-w-4xl xl:max-w-6xl'>
                 {children}
             </main>
             <Footer />

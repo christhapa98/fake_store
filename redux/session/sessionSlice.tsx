@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import { decodeJwt } from "@/utils/jwtdecode";
 
-interface session { token: string | null }
+interface session { token: string | null, session: any }
 
 // Create the sessionSlice
 const sessionSlices = createSlice({
@@ -17,10 +18,20 @@ const sessionSlices = createSlice({
         setToken(state, action) {
             state.token = action.payload;
             localStorage.setItem("fakeStoreToken", action.payload);
+            const decodedData = decodeJwt(action.payload);
+            if (decodedData) {
+                state.session = decodedData;
+            }
         },
         checkSession(state) {
             const token = localStorage.getItem("fakeStoreToken");
             state.token = token;
+            if (token) {
+                const decodedData = decodeJwt(token);
+                if (decodedData) {
+                    state.session = decodedData;
+                }
+            }
         },
         logout(state) {
             clearSession();

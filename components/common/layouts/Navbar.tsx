@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 import Drawer from './Drawer';
 import Cart from '@/components/cart/Cart';
+import { heartIcon } from '../icons';
 
 export default function Navbar() {
     const [showCart, setShowCart] = useState(false);
@@ -12,10 +13,21 @@ export default function Navbar() {
         <nav className="sticky top-0 z-10 border-gray-200 shadow bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
             <Drawer open={showDrawer} setOpen={setShowDrawer} />
             <Cart open={showCart} setOpen={setShowCart} />
-            <div className="flex flex-wrap items-center justify-between max-w-6xl py-4 mx-auto">
+            <div className="flex flex-wrap items-center justify-between py-4 mx-auto md:max-w-4xl xl:max-w-6xl">
                 <Link href={"/"}>
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Fake Store</span>
                 </Link>
+                <form className="flex items-center w-[40%]">
+                    <label htmlFor="voice-search" className="sr-only">Search</label>
+                    <div className="relative w-full">
+                        <input type="text" id="voice-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required />
+                        <button type="button" className="absolute inset-y-0 right-0 flex items-center pr-3">
+                        <svg className="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                        </svg>
+                        </button>
+                    </div>
+                </form>
                 <button data-collapse-toggle="navbar-solid-bg" type="button" className="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-solid-bg" aria-expanded="false">
                     <span className="sr-only">Open main menu</span>
                     <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
@@ -37,6 +49,11 @@ const NavItems = ({ setShowCart, setShowDrawer }: any) => {
             </li>
             <li>
                 <Link href={"/products"}>Products</Link>
+            </li>
+            <li>
+                <div className='cursor-pointer'>
+                    {heartIcon}
+                </div>
             </li>
             <li className='cursor-pointer hover:scale-105' onClick={() => setShowCart(true)}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
