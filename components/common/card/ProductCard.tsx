@@ -35,22 +35,24 @@ export default function ProductCard({ product }: { product: ProductCardProps }) 
     </svg>;
 
     return (
-        <div className="flex flex-col gap-3 p-3 transition-all scale-95 bg-white shadow-xl hover:scale-100 rounded-xl" key={product.index}>
+        <div className="flex flex-col gap-3 transition-all scale-95 bg-white dark:bg-gray-800 dark:text-white shadow-xl hover:scale-100 rounded-xl" key={product.index}>
             <div className="flex items-start justify-center">
                 <Link href={`/products/${product.id}`}>
-                    <Image src={product.image} alt="" height={100} width={100} className="object-contain w-40 h-40 " />
+                    <Image src={product.image} alt="" height={100} width={100} className="object-cover w-full h-60 rounded-t-xl" />
                 </Link >
             </div>
-            <p className="font-semibold truncate text-md">{product.title}</p>
-            <div className='flex justify-between'>
-                <p className="text-lg">Rs {product.price}</p>
-                <button className='flex flex-row-reverse hover:scale-110' onClick={addUpdateCart}>
-                    {addIcon}
-                </button>
+            <div className='p-3'>
+                <p className="font-semibold truncate text-md">{product.title}</p>
+                <div className='flex justify-between '>
+                    <p className="text-lg">Rs {product.price}</p>
+                    <button className='flex flex-row-reverse hover:scale-110' onClick={addUpdateCart}>
+                        {addIcon}
+                    </button>
+                </div>
+                <span className='px-3 py-1 text-sm text-white bg-orange-500 w-fit rounded-xl'>
+                    <span className='text-xs uppercase'>{product.category}</span>
+                </span>
             </div>
-            <span className='px-3 py-1 text-sm text-white bg-orange-500 w-fit rounded-xl'>
-                <span className='text-xs uppercase'>{product.category}</span>
-            </span>
         </div>
     )
 }

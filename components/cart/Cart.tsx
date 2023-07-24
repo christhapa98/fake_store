@@ -35,7 +35,7 @@ export default function Cart({ open, setOpen }: any) {
                                 leaveTo="translate-x-full"
                             >
                                 <Dialog.Panel className="w-screen max-w-md pointer-events-auto">
-                                    <div className="flex flex-col h-full overflow-y-scroll bg-white shadow-xl">
+                                    <div className="flex flex-col h-full overflow-y-scroll bg-white dark:bg-gray-800 shadow-xl">
                                         <div className="flex-1 px-4 py-6 overflow-y-auto sm:px-6">
                                             <CartHeader setOpen={setOpen} />
                                             <CartItems />

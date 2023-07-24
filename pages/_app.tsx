@@ -13,11 +13,13 @@ import 'react-toastify/dist/ReactToastify.css';
 const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <QueryClientProvider client={queryClient}>
-    <Provider store={stores}>
-      <ToastContainer />
-      <NextProgress color="#29d" options={{ trickleSpeed: 50, showSpinner: false }} />
-      <Component {...pageProps} />
-    </Provider >
-  </QueryClientProvider>
+  return <div className='dark'>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={stores}>
+        <ToastContainer />
+        <NextProgress color="#29d" options={{ trickleSpeed: 50, showSpinner: false }} />
+        <Component {...pageProps} />
+      </Provider >
+    </QueryClientProvider>
+  </div>
 }

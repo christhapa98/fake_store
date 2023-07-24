@@ -7,7 +7,7 @@ import withAuth from '@/hoc/authHoc'
 
 function MainLayout({ children }: { children: any }) {
     return (
-        <div className='bg-gray-100'>
+        <div className=' dark:bg-dark-primary dark:text-white'>
             <Head>
                 <title>Fake Store</title>
             </Head>

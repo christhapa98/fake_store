@@ -43,7 +43,7 @@ export default function Navbar() {
 
 const NavItems = ({ setShowCart, setShowDrawer }: any) => {
     return <div className="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
-        <ul className="flex flex-col mt-4 font-medium rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
+        <ul className="flex flex-col mt-4 font-medium rounded-lg dark:text-white bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
             <li>
                 <Link href={"/home"}>Home</Link>
             </li>

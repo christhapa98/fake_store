@@ -48,7 +48,7 @@ const cartSlice = createSlice({
             const updatedArray = newCartItems.map((item: any) => {
                 if (item.id === id) {
                     return { ...item, quantity: item.quantity - 1 };
-                }
+            }
                 return item;
             });
             state.cartItems = updatedArray;

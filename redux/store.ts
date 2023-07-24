@@ -3,11 +3,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { sessionReducer } from "./session/sessionSlice";
 import { cartReducer } from "./cart/cartSlice";
+import { makeypReducer } from "./makeup/makeupSlice";
 
 export const stores = configureStore({
     reducer: {
         session: sessionReducer,
-        cartItems: cartReducer
+        cartItems: cartReducer,
+        makeUp: makeypReducer
     }
 });
 

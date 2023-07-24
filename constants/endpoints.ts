@@ -13,5 +13,8 @@ export const endpoints = {
     },
     user: {
         login: baseUrl + "/auth/login"
+    },
+    makeup: {
+        products: "https://makeup-api.herokuapp.com/api/v1/products.json"
     }
 }
