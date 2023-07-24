@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <div className='dark'>
+  return <div className=''>
     <QueryClientProvider client={queryClient}>
       <Provider store={stores}>
         <ToastContainer />
