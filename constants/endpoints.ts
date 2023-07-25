@@ -15,6 +15,9 @@ export const endpoints = {
         login: baseUrl + "/auth/login"
     },
     makeup: {
-        products: "https://makeup-api.herokuapp.com/api/v1/products.json"
+        products: "https://makeup-api.herokuapp.com/api/v1/products.json",
+        get: (id: string | number) => `https://makeup-api.herokuapp.com/api/v1/products/${id}.json`,
+        getByCategory: (category: string) => `https://makeup-api.herokuapp.com/api/v1/products.json?category=${category}`,
+        getByBrand: (brand: string) => `http://makeup-api.herokuapp.com/api/v1/products.json?brand=${brand}`
     }
 }
